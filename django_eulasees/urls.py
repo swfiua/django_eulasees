@@ -12,6 +12,12 @@ urlpatterns = [
     url(r'^tags/$', api.TagList.as_view()),
     url(r'^tags/(?P<pk>[0-9]+)/$', api.TagList.as_view(), name='tag-detail'),
     
+    url(r'^tagicons/$', api.TagIconList.as_view()),
+    url(r'^tagicons/(?P<pk>[0-9]+)/$', api.TagIconList.as_view(), name='tagicon-detail'),
+    
+    url(r'^tageulas/$', api.TagEulaList.as_view()),
+    url(r'^tageulas/(?P<pk>[0-9]+)/$', api.TagEulaList.as_view(), name='tag-detail'),
+    
     url(r'^snippettags/$', api.SnippetTagList.as_view()),
     url(r'^snippettags/(?P<pk>[0-9]+)/$', api.SnippetTagList.as_view(), name='snippettags-detail'),
 
