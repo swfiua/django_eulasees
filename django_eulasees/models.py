@@ -23,6 +23,9 @@ class EulaSnippet(models.Model):
     text = models.TextField()
     start = models.PositiveIntegerField(blank=True)
     end = models.PositiveIntegerField(blank=True)
+    def __str__(self):
+
+        return self.title
 
 class SnippetData(models.Model):
     pass
@@ -33,10 +36,19 @@ class Tag(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
 
+    def __str__(self):
+
+        return self.name
+    
+
 class SnippetTag(models.Model):
 
     tag = models.ForeignKey(Tag)
     snippet = models.ForeignKey(EulaSnippet)
+
+    def __str__(self):
+
+        return "%s/%s" % (str(self.tag), str(self.snippet))
 
 # admin site stuff
 admin.site.register(RawEula)
