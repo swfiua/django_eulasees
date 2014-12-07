@@ -21,6 +21,14 @@ class TagList(generics.ListCreateAPIView):
     queryset = models.Tag.objects.all()
     serializer_class = serializers.TagSerializer
 
+class TagEulaList(generics.ListCreateAPIView):
+    queryset = models.TagEula.objects.all()
+    serializer_class = serializers.TagEulaSerializer
+
+class TagIconList(generics.ListCreateAPIView):
+    queryset = models.TagIcon.objects.all()
+    serializer_class = serializers.TagIconSerializer
+
 class SnippetTagList(generics.ListCreateAPIView):
     queryset = models.SnippetTag.objects.all()
     serializer_class = serializers.SnippetTagSerializer
