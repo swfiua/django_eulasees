@@ -14,7 +14,7 @@ class RawEula(models.Model):
 
     def __str__(self):
         """ Use the site """
-        return self.site
+        return self.description
 
 class EulaSnippet(models.Model):
 

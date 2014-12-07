@@ -19,13 +19,16 @@ urlpatterns = [
     url(r'^tageulas/(?P<pk>[0-9]+)/$', api.TagEulaList.as_view(), name='tag-detail'),
     
     url(r'^snippettags/$', api.SnippetTagList.as_view()),
-    url(r'^snippettags/(?P<pk>[0-9]+)/$', api.SnippetTagList.as_view(), name='snippettags-detail'),
+    url(r'^snippettags/(?P<pk>[0-9]+)/$', api.SnippetTagList.as_view(), name='snippettag-detail'),
 
     url(r'^snippetsforeula/(?P<pk>[0-9]+)/$$', api.SnippetsForEula.as_view()),
+
     url(r'^tagsforsnippet/(?P<pk>[0-9]+)/$$', api.TagsForSnippet.as_view()),
     url(r'^tagsforeula/(?P<pk>[0-9]+)/$$', api.TagsForEula.as_view()),
 
     url(r'^eulasfortag/(?P<pk>[0-9]+)/$$', api.EulasForTag.as_view()),
+
+    url(r'^snippettagsforeula/(?P<pk>[0-9]+)/$$', api.SnippetTagsForEula.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
