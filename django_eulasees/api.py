@@ -36,4 +36,30 @@ class SnippetsForEula(generics.ListAPIView):
         eula = models.RawEula.objects.get(pk=pk)
     
         return eula.eulasnippet_set.all()
+
+class TagsForSnippet(generics.ListAPIView):
+    serializer_class = serializers.TagSerializer
+
+    def get_queryset(self):
+
+        pk = self.kwargs.get('pk')
+
+        snippet = models.EulaSnippet.objects.get(pk=pk)
     
+        return snippet.snippettag_set.all()
+    
+
+class TagsForEula(generics.ListAPIView):
+    serializer_class = serializers.TagSerializer
+
+    def get_queryset(self):
+
+        pk = self.kwargs.get('pk')
+
+        eula = models.RawEula.objects.get(pk=pk)
+        
+        eula.eulasnippet_set.all()
+        
+        snippet = models.EulaSnippet.objects.get(pk=pk)
+    
+        return snippet.snippettag_set.all()
