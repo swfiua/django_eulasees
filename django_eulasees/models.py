@@ -79,11 +79,7 @@ admin.site.register(RawEula)
 admin.site.register(EulaSnippet)
 admin.site.register(Tag)
 admin.site.register(SnippetTag)
-
-
-
-
-
-
+admin.site.register(TagIcon)
+admin.site.register(TagEula)
 
 
