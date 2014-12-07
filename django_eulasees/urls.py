@@ -5,6 +5,17 @@ from django_eulasees import api
 urlpatterns = [
     url(r'^raweulas/$', api.RawEulaList.as_view()),
     url(r'^raweulas/(?P<pk>[0-9]+)/$', api.RawEulaList.as_view()),
+
+    url(r'^eulasnippets/$', api.EulaSnippetList.as_view()),
+    url(r'^eulasnippets/(?P<pk>[0-9]+)/$', api.EulaSnippetList.as_view()),
+
+    url(r'^tags/$', api.TagList.as_view()),
+    url(r'^tags/(?P<pk>[0-9]+)/$', api.TagList.as_view()),
+    
+    url(r'^snippettags/$', api.SnippetTagList.as_view()),
+    url(r'^snippettags/(?P<pk>[0-9]+)/$', api.SnippetTagList.as_view()),
+
+    url(r'^snippetsforeula/(?P<pk>[0-9]+)/$$', api.SnippetsForEula.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
