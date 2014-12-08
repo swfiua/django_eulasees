@@ -1,7 +1,9 @@
 from django_eulasees import models, serializers
 
 from rest_framework import generics
-
+from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 class RawEulaList(generics.ListCreateAPIView):
     """ Create or get RawEula objects
@@ -145,6 +147,43 @@ class SnippetTagsForEula(generics.ListAPIView):
 
         return results
 
-def get_json_for_eula(request):
-    pass
+
+@api_view(['GET'])    
+def get_everything_for_eula(request, pk):
+    """ Get everything for the specified pk """
+
+    # start with the Eula
+    eula = models.RawEula.objects.get(pk=pk)
+    result = serializers.RawEulaSerializer(eula).data
+
+    # Get the snippets
+    snippets = [_get_everything_for_snippet(snippet) for snippet in eula.eulasnippet_set.all()]
+
+    result['snippets'] = snippets
+
+    return Response(result)
+
+
+def _get_everything_for_snippet(snippet):
+    """ Get everything for a snippet """
+
+    # Get tags for the snippet
+    tags = [_get_everything_for_tag(x.tag) for x in snippet.snippettag_set.all()]
     
+    result = serializers.EulaSnippetSerializer(snippet).data
+
+    result['tags'] = tags
+
+    return result
+
+def _get_everything_for_tag(tag):
+
+    # Get TagIcons
+    icons = [serializers.TagIconSerializer(x).data for x in tag.tagicon_set.all()]
+    tag_eulas = [serializers.TagEualSerializer(x).data for x in tag.tageula_set.all()]
+
+    result = serializers.TagSerializer(tag).data
+    result['icons'] = icons
+    result['tag_eulas'] = tag_eulas
+    
+    return result

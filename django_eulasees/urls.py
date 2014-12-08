@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^eulasfortag/(?P<pk>[0-9]+)/$$', api.EulasForTag.as_view()),
 
     url(r'^snippettagsforeula/(?P<pk>[0-9]+)/$$', api.SnippetTagsForEula.as_view()),
+
+    url(r'^everythingforeula/(?P<pk>[0-9]+)/$$', api.get_everything_for_eula),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
