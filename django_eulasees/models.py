@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.contrib import admin
 from django.db import models
 
 class RawEula(models.Model):
@@ -73,13 +72,5 @@ class TagEula(models.Model):
     tag = models.ForeignKey(Tag)
     eula = models.ForeignKey(RawEula)
     
-
-# admin site stuff
-admin.site.register(RawEula)
-admin.site.register(EulaSnippet)
-admin.site.register(Tag)
-admin.site.register(SnippetTag)
-admin.site.register(TagIcon)
-admin.site.register(TagEula)
 
 
